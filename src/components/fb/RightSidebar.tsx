@@ -1,4 +1,5 @@
 import { Search, Video, MoreHorizontal } from "lucide-react";
+import { Link } from "react-router-dom";
 import { USERS } from "@/data/mock";
 
 export const RightSidebar = () => (
@@ -40,7 +41,10 @@ export const RightSidebar = () => (
       <ul className="mt-1">
         {USERS.map((u) => (
           <li key={u.id}>
-            <button className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-secondary">
+            <Link
+              to={`/profile/${u.id}`}
+              className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-secondary"
+            >
               <span className="relative">
                 <img src={u.avatar} alt={u.name} className="h-9 w-9 rounded-full object-cover" />
                 {u.online && (
@@ -48,7 +52,7 @@ export const RightSidebar = () => (
                 )}
               </span>
               <span className="text-[15px] font-medium">{u.name}</span>
-            </button>
+            </Link>
           </li>
         ))}
       </ul>

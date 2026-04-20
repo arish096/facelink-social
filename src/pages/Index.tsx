@@ -10,11 +10,12 @@ import { Composer } from "@/components/fb/Composer";
 import { PostCard } from "@/components/fb/PostCard";
 import { ReelsStrip } from "@/components/fb/ReelsStrip";
 import { ReelsPlayer } from "@/components/fb/ReelsPlayer";
-import { POSTS } from "@/data/mock";
 import { useAuth } from "@/context/AuthContext";
+import { useAppStore } from "@/context/AppStore";
 
 const Index = () => {
   const { isAuthed } = useAuth();
+  const { posts } = useAppStore();
   const [menuOpen, setMenuOpen] = useState(false);
   const [reelsOpen, setReelsOpen] = useState(false);
   const [reelsStart, setReelsStart] = useState(0);
@@ -46,11 +47,13 @@ const Index = () => {
             >
               <Stories />
               <Composer />
-              <PostCard post={POSTS[0]} />
-              <PostCard post={POSTS[1]} />
+              {posts.slice(0, 2).map((p) => (
+                <PostCard key={p.id} post={p} />
+              ))}
               <ReelsStrip onWatch={openReels} />
-              <PostCard post={POSTS[2]} />
-              <PostCard post={POSTS[3]} />
+              {posts.slice(2).map((p) => (
+                <PostCard key={p.id} post={p} />
+              ))}
             </motion.main>
           )}
         </AnimatePresence>

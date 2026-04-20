@@ -1,35 +1,18 @@
-import { Search, Home, Store, Users, Bell, MessageCircle, Menu, LogOut } from "lucide-react";
-import { ME } from "@/data/mock";
+import { Home, Store, Users, Bell, MessageCircle, Menu, LogOut } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { SearchBar } from "./SearchBar";
+import { ME } from "@/data/mock";
 import logo from "@/assets/facelink-logo.jpeg";
 
 type Props = {
   onOpenMobileMenu: () => void;
 };
 
-const NavIcon = ({
-  icon: Icon,
-  active,
-  label,
-}: {
-  icon: typeof Home;
-  active?: boolean;
-  label: string;
-}) => (
-  <button
-    aria-label={label}
-    className={`relative flex h-12 w-full items-center justify-center rounded-lg transition-colors hover:bg-secondary md:w-28 ${
-      active ? "border-b-[3px] border-primary text-primary" : "text-muted-foreground"
-    }`}
-  >
-    <Icon className="h-6 w-6" />
-  </button>
-);
-
 export const TopNav = ({ onOpenMobileMenu }: Props) => {
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   const navigate = useNavigate();
+  const avatar = currentUser?.avatar ?? ME.avatar;
 
   return (
     <header className="sticky top-0 z-40 h-14 w-full bg-surface shadow-nav">
@@ -43,25 +26,36 @@ export const TopNav = ({ onOpenMobileMenu }: Props) => {
           >
             <Menu className="h-5 w-5" />
           </button>
-          <img
-            src={logo}
-            alt="FaceLink"
-            className="h-9 w-9 rounded-full object-cover ring-2 ring-primary/20"
-          />
-          <div className="relative hidden md:block">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <input
-              placeholder="Search facelink"
-              className="h-10 w-60 rounded-full bg-secondary pl-9 pr-4 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary"
+          <button onClick={() => navigate("/")} aria-label="Home">
+            <img
+              src={logo}
+              alt="FaceLink"
+              className="h-9 w-9 rounded-full object-cover ring-2 ring-primary/20"
             />
-          </div>
+          </button>
+          <SearchBar className="hidden md:block" />
         </div>
 
         {/* Center: nav */}
         <nav className="hidden items-center justify-center gap-1 md:flex">
-          <NavIcon icon={Home} label="Home" active />
-          <NavIcon icon={Store} label="Marketplace" />
-          <NavIcon icon={Users} label="Groups" />
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              `relative flex h-12 w-28 items-center justify-center rounded-lg transition-colors hover:bg-secondary ${
+                isActive ? "border-b-[3px] border-primary text-primary" : "text-muted-foreground"
+              }`
+            }
+            aria-label="Home"
+          >
+            <Home className="h-6 w-6" />
+          </NavLink>
+          <button className="flex h-12 w-28 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary" aria-label="Marketplace">
+            <Store className="h-6 w-6" />
+          </button>
+          <button className="flex h-12 w-28 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary" aria-label="Groups">
+            <Users className="h-6 w-6" />
+          </button>
         </nav>
 
         {/* Right: actions */}
@@ -82,11 +76,13 @@ export const TopNav = ({ onOpenMobileMenu }: Props) => {
           >
             <LogOut className="h-5 w-5" />
           </button>
-          <img
-            src={ME.avatar}
-            alt={ME.name}
-            className="h-9 w-9 rounded-full object-cover ring-2 ring-transparent hover:ring-primary"
-          />
+          <button onClick={() => navigate("/profile/me")} aria-label="Your profile">
+            <img
+              src={avatar}
+              alt={currentUser?.name ?? "Me"}
+              className="h-9 w-9 rounded-full object-cover ring-2 ring-transparent hover:ring-primary"
+            />
+          </button>
         </div>
       </div>
     </header>

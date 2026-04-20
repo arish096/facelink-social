@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Users, Clock, Bookmark, Store, Calendar, Flag, LogOut } from "lucide-react";
+import { X, Users, Clock, Bookmark, Store, Calendar, Flag, LogOut, User } from "lucide-react";
 import { ME, USERS } from "@/data/mock";
 import { useAuth } from "@/context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type Props = { open: boolean; onClose: () => void };
 
@@ -16,8 +16,9 @@ const items = [
 ];
 
 export const MobileMenu = ({ open, onClose }: Props) => {
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   const navigate = useNavigate();
+  const me = currentUser ?? ME;
 
   return (
     <AnimatePresence>
@@ -48,10 +49,14 @@ export const MobileMenu = ({ open, onClose }: Props) => {
               </button>
             </div>
 
-            <button className="flex w-full items-center gap-3 rounded-lg p-2 hover:bg-secondary">
-              <img src={ME.avatar} alt={ME.name} className="h-10 w-10 rounded-full object-cover" />
-              <span className="text-[15px] font-semibold">{ME.name}</span>
-            </button>
+            <Link
+              to="/profile/me"
+              onClick={onClose}
+              className="flex w-full items-center gap-3 rounded-lg p-2 hover:bg-secondary"
+            >
+              <img src={me.avatar} alt={me.name} className="h-10 w-10 rounded-full object-cover" />
+              <span className="text-[15px] font-semibold">{me.name}</span>
+            </Link>
 
             <ul className="mt-3 space-y-1">
               {items.map(({ icon: Icon, label }) => (
@@ -75,7 +80,11 @@ export const MobileMenu = ({ open, onClose }: Props) => {
             <ul className="space-y-1">
               {USERS.slice(0, 6).map((u) => (
                 <li key={u.id}>
-                  <button className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-secondary">
+                  <Link
+                    to={`/profile/${u.id}`}
+                    onClick={onClose}
+                    className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-secondary"
+                  >
                     <span className="relative">
                       <img src={u.avatar} alt={u.name} className="h-9 w-9 rounded-full object-cover" />
                       {u.online && (
@@ -83,7 +92,7 @@ export const MobileMenu = ({ open, onClose }: Props) => {
                       )}
                     </span>
                     <span className="text-[15px] font-medium">{u.name}</span>
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

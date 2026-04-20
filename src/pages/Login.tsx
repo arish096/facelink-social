@@ -4,17 +4,39 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
-import logo from "@/assets/facelink-logo.jpeg";
+import { toast } from "sonner";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, signup } = useAuth();
   const navigate = useNavigate();
   const [mode, setMode] = useState<"login" | "signup">("login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("alex@example.com");
+  const [password, setPassword] = useState("demo1234");
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login();
+    setError(null);
+    const res = mode === "login" ? login(email, password) : signup(name, email, password);
+    if (!res.ok) {
+      setError(res.error ?? "Something went wrong.");
+      return;
+    }
+    toast.success(mode === "login" ? "Welcome back!" : "Account created!");
     navigate("/");
+  };
+
+  const switchMode = () => {
+    setMode(mode === "login" ? "signup" : "login");
+    setError(null);
+    if (mode === "login") {
+      setEmail("");
+      setPassword("");
+    } else {
+      setEmail("alex@example.com");
+      setPassword("demo1234");
+    }
   };
 
   return (
@@ -25,14 +47,7 @@ const Login = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <img
-            src={logo}
-            alt="FaceLink"
-            className="mb-4 h-20 w-auto rounded-xl object-contain shadow-card md:h-24"
-          />
-          <h1 className="text-5xl font-bold tracking-tight text-primary md:text-6xl">
-            FaceLink
-          </h1>
+          <h1 className="text-5xl font-bold tracking-tight text-primary md:text-6xl">FaceLink</h1>
           <p className="mt-4 max-w-md text-2xl leading-snug text-foreground md:text-[28px]">
             Connect with friends and the world around you on FaceLink.
           </p>
@@ -46,22 +61,33 @@ const Login = () => {
         >
           <form onSubmit={handleSubmit} className="space-y-3">
             {mode === "signup" && (
-              <Input placeholder="Full name" required className="h-12 text-base" />
+              <Input
+                placeholder="Full name"
+                required
+                className="h-12 text-base"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             )}
             <Input
               type="email"
               placeholder="Email address"
               required
               className="h-12 text-base"
-              defaultValue="alex@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Input
               type="password"
               placeholder="Password"
               required
               className="h-12 text-base"
-              defaultValue="demo1234"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {error && (
+              <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>
+            )}
             <Button
               type="submit"
               className="h-12 w-full bg-primary text-base font-semibold hover:bg-primary-hover"
@@ -69,10 +95,7 @@ const Login = () => {
               {mode === "login" ? "Log In" : "Sign Up"}
             </Button>
             <div className="pt-2 text-center">
-              <button
-                type="button"
-                className="text-sm text-primary hover:underline"
-              >
+              <button type="button" className="text-sm text-primary hover:underline">
                 Forgotten password?
               </button>
             </div>
@@ -80,7 +103,7 @@ const Login = () => {
             <div className="flex justify-center">
               <Button
                 type="button"
-                onClick={() => setMode(mode === "login" ? "signup" : "login")}
+                onClick={switchMode}
                 className="h-12 bg-success px-6 text-base font-semibold text-success-foreground hover:opacity-90"
               >
                 {mode === "login" ? "Create new account" : "Back to log in"}
@@ -88,7 +111,7 @@ const Login = () => {
             </div>
           </form>
           <p className="mt-5 text-center text-sm text-muted-foreground">
-            Demo: any credentials will log you in.
+            Demo account: <strong>alex@example.com</strong> / <strong>demo1234</strong>
           </p>
         </motion.section>
       </main>
