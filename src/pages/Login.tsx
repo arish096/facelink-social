@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
+import logo from "@/assets/facelink-logo.jpeg";
 
 const Login = () => {
   const { login } = useAuth();
@@ -24,11 +25,16 @@ const Login = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
+          <img
+            src={logo}
+            alt="FaceLink"
+            className="mb-4 h-20 w-auto rounded-xl object-contain shadow-card md:h-24"
+          />
           <h1 className="text-5xl font-bold tracking-tight text-primary md:text-6xl">
-            facelink
+            FaceLink
           </h1>
           <p className="mt-4 max-w-md text-2xl leading-snug text-foreground md:text-[28px]">
-            Connect with friends and the world around you on facelink.
+            Connect with friends and the world around you on FaceLink.
           </p>
         </motion.section>
 

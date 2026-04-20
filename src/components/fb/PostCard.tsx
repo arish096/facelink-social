@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, MoreHorizontal, Send, Share2, ThumbsUp } from "lucide-react";
 import { Post, findUser, ME } from "@/data/mock";
+import { SmartVideo } from "./SmartVideo";
 
 export const PostCard = ({ post }: { post: Post }) => {
   const author = findUser(post.userId);
@@ -40,7 +41,13 @@ export const PostCard = ({ post }: { post: Post }) => {
 
       <p className="px-4 pb-3 text-[15px] leading-snug">{post.caption}</p>
 
-      {post.image && (
+      {post.video && (
+        <div className="relative aspect-video w-full bg-black">
+          <SmartVideo src={post.video.src} poster={post.video.poster} />
+        </div>
+      )}
+
+      {post.image && !post.video && (
         <img
           src={post.image}
           alt=""
