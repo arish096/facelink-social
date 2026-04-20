@@ -48,7 +48,7 @@ export const TopNav = ({ onOpenMobileMenu }: Props) => {
           <div className="relative hidden md:block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
-              placeholder="Search Facebook"
+              placeholder="Search facelink"
               className="h-10 w-60 rounded-full bg-secondary pl-9 pr-4 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary"
             />
           </div>
