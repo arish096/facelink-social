@@ -2,6 +2,7 @@ import { Search, Home, Store, Users, Bell, MessageCircle, Menu, LogOut } from "l
 import { ME } from "@/data/mock";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import logo from "@/assets/facelink-logo.jpeg";
 
 type Props = {
   onOpenMobileMenu: () => void;
@@ -42,9 +43,11 @@ export const TopNav = ({ onOpenMobileMenu }: Props) => {
           >
             <Menu className="h-5 w-5" />
           </button>
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-black text-primary-foreground">
-            f
-          </div>
+          <img
+            src={logo}
+            alt="FaceLink"
+            className="h-9 w-9 rounded-full object-cover ring-2 ring-primary/20"
+          />
           <div className="relative hidden md:block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
