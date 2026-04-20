@@ -25,10 +25,10 @@ const Login = () => {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-5xl font-bold tracking-tight text-primary md:text-6xl">
-            facebook
+            facelink
           </h1>
           <p className="mt-4 max-w-md text-2xl leading-snug text-foreground md:text-[28px]">
-            Connect with friends and the world around you on Facebook.
+            Connect with friends and the world around you on facelink.
           </p>
         </motion.section>
 
