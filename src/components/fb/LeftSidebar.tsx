@@ -1,4 +1,6 @@
 import { Users, Clock, Bookmark, Flag, Calendar, Store, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 import { ME } from "@/data/mock";
 
 const items = [
@@ -10,14 +12,20 @@ const items = [
   { icon: Store, label: "Marketplace" },
 ];
 
-export const LeftSidebar = () => (
+export const LeftSidebar = () => {
+  const { currentUser } = useAuth();
+  const me = currentUser ?? ME;
+  return (
   <aside className="hidden h-[calc(100vh-3.5rem)] w-72 shrink-0 overflow-y-auto px-3 py-4 lg:block">
     <ul className="space-y-1">
       <li>
-        <button className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-secondary">
-          <img src={ME.avatar} alt={ME.name} className="h-9 w-9 rounded-full object-cover" />
-          <span className="text-[15px] font-medium">{ME.name}</span>
-        </button>
+        <Link
+          to="/profile/me"
+          className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-secondary"
+        >
+          <img src={me.avatar} alt={me.name} className="h-9 w-9 rounded-full object-cover" />
+          <span className="text-[15px] font-medium">{me.name}</span>
+        </Link>
       </li>
       {items.map(({ icon: Icon, label }) => (
         <li key={label}>
