@@ -61,4 +61,6 @@ export const LeftSidebar = () => {
       </ul>
     </div>
   </aside>
-);
+  );
+};
+
