@@ -18,6 +18,7 @@ export type Post = {
   time: string;
   caption: string;
   image?: string;
+  video?: { src: string; poster?: string };
   likes: number;
   comments: { userId: string; text: string }[];
 };
@@ -89,9 +90,13 @@ export const POSTS: Post[] = [
     id: "p3",
     userId: "u5",
     time: "9h",
-    caption: "Shipped a new feature today. Small win, big smile 🚀",
-    likes: 84,
-    comments: [],
+    caption: "Caught the city waking up today 🌆",
+    video: {
+      src: "https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4",
+      poster: img("post-city", 1200, 700),
+    },
+    likes: 412,
+    comments: [{ userId: "u1", text: "Cinematic ✨" }],
   },
   {
     id: "p4",
@@ -107,14 +112,14 @@ export const POSTS: Post[] = [
   },
 ];
 
-// Public sample videos (Google sample bucket — vertical-friendly)
+// Public sample videos (Pexels — vertical-friendly, free to use)
 export const REELS: Reel[] = [
   {
     id: "r1",
     userId: "u8",
     caption: "Tokyo neon walk 🌃",
-    poster: img("reel-tokyo", 600, 1000),
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    poster: "https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://videos.pexels.com/video-files/3045163/3045163-uhd_1440_2560_30fps.mp4",
     likes: 2200,
     comments: 184,
   },
@@ -122,8 +127,8 @@ export const REELS: Reel[] = [
     id: "r2",
     userId: "u4",
     caption: "Pasta from scratch 🍝",
-    poster: img("reel-pasta", 600, 1000),
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    poster: "https://images.pexels.com/videos/4252090/pexels-photo-4252090.jpeg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://videos.pexels.com/video-files/4252090/4252090-uhd_1440_2732_25fps.mp4",
     likes: 1540,
     comments: 92,
   },
@@ -131,8 +136,8 @@ export const REELS: Reel[] = [
     id: "r3",
     userId: "u6",
     caption: "Studio session vibes 🎧",
-    poster: img("reel-music", 600, 1000),
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    poster: "https://images.pexels.com/videos/7095/woman-girl-headphones-music.jpg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://videos.pexels.com/video-files/4778621/4778621-hd_1080_1920_30fps.mp4",
     likes: 980,
     comments: 41,
   },
@@ -140,8 +145,8 @@ export const REELS: Reel[] = [
     id: "r4",
     userId: "u7",
     caption: "Sketching Barcelona ✏️",
-    poster: img("reel-sketch", 600, 1000),
-    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    poster: "https://images.pexels.com/videos/4625747/pexels-photo-4625747.jpeg?auto=compress&cs=tinysrgb&w=600",
+    src: "https://videos.pexels.com/video-files/4625747/4625747-uhd_1440_2732_25fps.mp4",
     likes: 1320,
     comments: 63,
   },
