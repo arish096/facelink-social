@@ -1,54 +1,159 @@
-# Echo Social
+# 🌐 FaceLink Social
 
-Build a high-fidelity, fully responsive Facebook clone using React, Tailwind CSS, and Lucide icons.
+**FaceLink Social** is a modern social networking web application designed to help users connect with friends, share content, and interact through a clean and user-friendly interface.
 
-​1. Authentication & Mock Data:
+🔗 **Live Demo:** https://facelink-social.lovable.app
 
-​Initialize the app with 5-10 hardcoded dummy user accounts (with names, bios, and profile pictures) so the feed looks populated immediately.
+---
 
-​Include a professional Login/Signup landing page.
+## ✨ Features
 
-​2. Layout & UI:
+* 👤 User-friendly social media interface
+* 🏠 Modern home/feed experience
+* 👥 Connect and interact with friends
+* 💬 Social interaction features
+* ❤️ Like and engagement functionality
+* 📱 Responsive design for different screen sizes
+* 🎨 Clean and modern UI
+* ⚡ Fast and smooth user experience
 
-​Sticky Top Navbar: Search, Home, Marketplace, Groups, and Profile icons.
+---
 
-​Left Sidebar: User profile link and shortcuts (Friends, Memories, Saved).
+## 🛠️ Tech Stack
 
-​Right Sidebar: 'Contacts' list showing the dummy accounts with green online status indicators.
+* **Frontend:** React.js
+* **Styling:** Tailwind CSS
+* **Build Tool:** Vite
+* **UI Components:** Modern reusable components
+* **Development Platform:** Lovable
 
-​3. The Feed & Reels Integration:
+---
 
-​Stories Row: Circular avatars with preview images at the top of the feed.
+## 📸 Project Preview
 
-​Reels Component: Between feed posts, insert a 'Reels' section featuring vertical video cards (use high-quality placeholder video URLs). Include a 'Watch' button that expands a full-screen vertical scrolling Reels player with 'Like', 'Comment', and 'Share' overlays.
+> Add screenshots of your application here.
 
-​Post Cards: Standard posts with images, captions, and functional 'Like' (blue toggle) and 'Comment' buttons.
+```text
+FaceLink Social
+│
+├── 🏠 Home / Feed
+├── 👤 User Profiles
+├── 👥 Friends & Connections
+├── 💬 Social Interactions
+└── 📱 Responsive UI
+```
 
-​4. Interactivity & Tech:
+---
 
-​Use Framer Motion for smooth transitions between the Feed and the Reels player.
+## 🚀 Getting Started
 
-​Background color: #F0F2F5; Primary Blue: #1877F2.
+### 1. Clone the repository
 
-​Ensure the layout is perfectly responsive for mobile devices, moving the sidebar links into a 'Hamburger' menu."
+```bash
+git clone YOUR_REPOSITORY_URL
+```
 
-This project was built with [Lovable](https://lovable.dev).
+### 2. Navigate to the project
 
-## Build with Lovable
+```bash
+cd facelink-social
+```
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a21ab39f-aafb-4b2d-813b-f6ae7462e034).
+### 3. Install dependencies
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+```bash
+npm install
+```
 
-## Development
+### 4. Start the development server
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
 npm run dev
 ```
+
+The application will be available at the local development URL shown in your terminal.
+
+---
+
+## 📂 Project Structure
+
+```text
+facelink-social/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   └── ...
+│
+├── package.json
+├── vite.config.ts
+├── tailwind.config.ts
+└── README.md
+```
+
+---
+
+## 🎯 Purpose
+
+The goal of FaceLink Social is to create a simple, modern, and engaging social networking experience where users can connect and interact through an intuitive digital platform.
+
+---
+
+## 🔮 Future Improvements
+
+* 🔐 User authentication
+* 📝 Create and edit posts
+* 💬 Real-time messaging
+* 🔔 Notifications
+* 👤 Advanced profile customization
+* 🔎 User and post search
+* 🌙 Dark mode
+* 📸 Image and media sharing
+* 🔒 Improved privacy controls
+
+---
+
+## 🤝 Contributing
+
+Contributions, suggestions, and improvements are welcome.
+
+1. Fork the repository
+2. Create a new branch
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push to your branch
+
+```bash
+git push origin feature/new-feature
+```
+
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is created for learning, development, and portfolio purposes.
+
+---
+
+## 👨‍💻 Developer
+
+**Arish Islam**
+
+🔗 Live Project: https://facelink-social.lovable.app
+
+---
+
+⭐ If you like this project, consider giving the repository a star!
