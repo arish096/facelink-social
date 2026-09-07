@@ -28,21 +28,6 @@
 * **Development Platform:** Lovable
 
 ---
-
-## 📸 Project Preview
-
-> Add screenshots of your application here.
-
-```text
-FaceLink Social
-│
-├── 🏠 Home / Feed
-├── 👤 User Profiles
-├── 👥 Friends & Connections
-├── 💬 Social Interactions
-└── 📱 Responsive UI
-```
-
 ---
 
 ## 🚀 Getting Started
